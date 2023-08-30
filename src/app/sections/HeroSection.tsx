@@ -1,4 +1,5 @@
 export default function HeroSection(props : any) {
+    
     return (
         <div className="hero relative flex items-center pt-[64px] justify-center lg:h-[var(--height-h-screen,800px)] sm:h-[1200px] h-[800px]">
 
