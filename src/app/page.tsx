@@ -17,7 +17,7 @@ export default function Home() {
     }
 
     const fetchImage = async () => {
-        const img = fetch(`https://ristek-verify-backend.vercel.app/admin/verify/certification/image/2d61e921-72fd-4f94-8ae7-00384bbff6b0`)
+        const img = await fetch(`https://ristek-verify-backend.vercel.app/admin/verify/certification/image/2d61e921-72fd-4f94-8ae7-00384bbff6b0`)
         console.log(img)
     }
 
