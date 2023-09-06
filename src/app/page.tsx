@@ -17,7 +17,7 @@ export default function Home() {
     }
 
     const fetchImage = async () => {
-        const img = fetch(`https://app.getpostman.com/join-team?invite_code=41114f11e09273a639114a9ebd2476bc&target_code=48384a17462cdc490fbd7eb4422dd175/verify/certification/image/2d61e921-72fd-4f94-8ae7-00384bbff6b0`)
+        const img = fetch(`https://ristek-verify-backend.vercel.app/admin/verify/certification/image/2d61e921-72fd-4f94-8ae7-00384bbff6b0`)
         console.log(img)
     }
 
