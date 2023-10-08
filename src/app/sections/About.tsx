@@ -1,6 +1,6 @@
 export default function About() {
     return (
-        <div id="about" className="relative flex items-center pt-[64px] justify-center lg:h-[var(--height-h-screen,800px)] sm:h-[1200px] h-fit">
+        <div id="about" className="relative flex items-center  justify-center lg:h-[var(--height-h-screen,800px)] sm:h-[1200px] h-fit">
 
             <div className="absolute flex flex-row w-[100%] h-[100%]">
                 <img src={"/assets/decor-about-top-left.svg"} className="absolute left-0 top-0 h-[134px] md:block hidden"></img>

@@ -1,7 +1,22 @@
+import { useState } from "react"
+import { useMediaQuery } from "@mui/material"
+
 export default function HeroSection(props : any) {
+
+    const [data, setData] = useState ("")
+
+    const isMobile = useMediaQuery("(max-width:1024px)")
+
+    const handleChange = ({currentTarget: input} : any) => {
+        setData(input.value)
+    }
+
+    const handleSubmit = (event : any)  => {
+        event.preventDefault();
+    };
     
     return (
-        <div className="hero relative flex items-center pt-[64px] justify-center lg:h-[var(--height-h-screen,800px)] sm:h-[1200px] h-[800px]">
+        <div className="hero relative flex items-center justify-center lg:h-[var(--height-h-screen,800px)] sm:h-[1200px] h-[800px]">
 
             <div className="absolute flex flex-row w-[100%] h-[100%]">
                 <img src={"/assets/decor-hero-bg-left.svg"} className="absolute"></img>
@@ -18,15 +33,14 @@ export default function HeroSection(props : any) {
                 <div className="flex flex-col items-center justify-center gap-[10px]">
                     <p className="md:text-[36px] text-[20px] font-[700]">Verify Your Certificate!</p>
 
-                    <div className="flex flex-row items-center justify-center gap-[20px]">
-                        <input type="text" className="lg:w-[640px] md:w-[600px] w-[204px] md:h-[48px] h-[40px] rounded-[8px] text-black p-[8px] lg:block hidden" 
-                               placeholder="Enter certificate ID by the format of RXXXX-XXXX-XXXX"/>
-                        <input type="text" className="lg:w-[640px] md:w-[600px] w-[204px] md:h-[48px] h-[40px] rounded-[8px] text-black p-[8px] lg:hidden block" 
-                               placeholder="RXXXX-XXXX-XXXX"/>
-                        <button className="md:w-[116px] w-[92px] md:h-[48px] h-[40px] bg-[#5038BC] rounded-[8px]" onClick={props.modal}> Verify</button>
-                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="flex flex-row items-center justify-center gap-[20px]">
+                                <input onChange = {handleChange} type="text" className="lg:w-[640px] md:w-[600px] w-[204px] md:h-[48px] h-[40px] rounded-[8px] text-black p-[20px] block" 
+                                    placeholder={isMobile ? "RXXXX-XXXX-XXXX" : "Enter certificate ID by the format of RXXXX-XXXX-XXXX"}/>
+                                <button type= "submit" className="md:w-[116px] w-[92px] md:h-[48px] h-[40px] bg-[#5038BC] rounded-[8px]" onClick={() => props.modal(data)}> Verify</button>
+                        </div>
+                    </form>
                 </div>
-
             </div>
         </div>
     )

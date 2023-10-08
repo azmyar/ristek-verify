@@ -13,7 +13,7 @@ export default function NavigationBar() {
   }
 
   return (
-    <>
+    <div>
       <div
         className="flex flex-row fixed z-20 bg-white h-[64px] w-[100%] top-0
                       lg:pr-[80px] sm:pr-[40px] pr-[32px]
@@ -44,8 +44,9 @@ export default function NavigationBar() {
             </button>
           </a>
 
-          <a href="#footer">
-            <button className="lg:pr-[32px] pr-[24px] lg:pl-[32px] pl-[24px] justify-center items-center">
+          <a>
+            <button className="lg:pr-[32px] pr-[24px] lg:pl-[32px] pl-[24px] justify-center items-center"
+            onClick={() => window.location.href = "mailto:team@ristek.cs.ui.ac.id"}>
               Contact Us
             </button>
           </a>
@@ -72,7 +73,7 @@ export default function NavigationBar() {
 
       {show && (
         <div className="h-[100%] w-[100%] fixed z-[15] md:hidden">
-          <div className="fade-slide-in flex flex-col justify-center fixed h-[150px] w-[100%] bg-[#E2E8F0] text-base font-semibold mt-[64px]  gap-[16px] pl-8 pr-8 pt-4 pb-4">
+          <div className="fade-slide-in flex flex-col justify-center fixed h-[150px] w-[100%] bg-[#E2E8F0] text-base font-semibold  gap-[16px] pl-8 pr-8 pt-4 pb-4">
             <a
               href="#"
               onClick={() => {
@@ -92,12 +93,11 @@ export default function NavigationBar() {
             </a>
 
             <a
-              href="#footer"
               onClick={() => {
                 showMenu(!show);
               }}
             >
-              <button>Contact Us</button>
+              <button onClick={() => window.location.href = "mailto:team@ristek.cs.ui.ac.id"}>Contact Us</button>
             </a>
 
           </div>
@@ -109,6 +109,6 @@ export default function NavigationBar() {
           ></div>
         </div>
       )}
-    </>
+    </div>
   );
 }

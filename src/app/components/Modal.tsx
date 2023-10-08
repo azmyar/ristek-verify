@@ -1,76 +1,110 @@
+import { copyImageToClipboard } from "copy-image-clipboard";
 
+interface Props {
+    modal : Function,
+    showToast : Function,
+    details : {
+        cert_id : string,
+        name : string,
+        eventName : string,
+        asWhat : string,
+        issuedDate : string
+    },
+    image : string,
+    pdf : string
+}
 
-export default function Modal(props : any) : JSX.Element {
+export default function Modal(props : Props) : JSX.Element {
 
     return (
-        <div className="fade fixed mt-[64px] flex flex-col items-center sm:gap-[20px] gap-[10px] p-[20px] lg:w-[1000px] w-[700px] rounded-[20px] bg-white">
+        <div className="fade fixed lg:h-fit h-[85%] flex flex-col items-center sm:gap-[20px] gap-[10px] p-[20px] lg:w-[1000px] md:w-[700px] w-[337px] rounded-[20px] bg-white">
             <div className="flex flex-row w-full justify-between items-center">
-                <img src={"/icons/cross_box.svg"} className="invisible lg:block hidden"></img>
-                <p className="font-bold md:text-[36px] text-[30px] text-[#5038BC]">
+                <img src={"/icons/cross_box.svg"} className="invisible md:block hidden"></img>
+                <p className="font-bold md:text-[36px] text-[30px] text-[#5038BC] ">
                     RISTEK Verify
                 </p>
                 <img src={"/icons/cross_box.svg"} onClick={() => props.modal()} className="cursor-pointer"></img>
             </div>
 
-            <div className="flex lg:flex-row flex-col items-center gap-[30px]">
-                <div className="flex flex-col w-[600px] gap-[10px]">
-                    <div className="flex flex-col justify-center bg-[#DDDDDD] rounded-[20px] pl-[32px] pr-[32px] pt-[20px] pb-[20px] ">
-                        <div className="flex flex-row items-center bg-white rounded-[8px] gap-[8px] h-[32px] pl-[16px]">
-                            <p>Certificate ID: RYYY-UUID</p>
-                            <img src={"/icons/copy-icon.svg"}/>
+            <div className="flex lg:flex-row flex-col items-center gap-[30px] xl:overflow-hidden overflow-auto h-fit">
+                <div className="flex flex-col md:w-[600px] w-[297px] gap-[10px]">
+                    <div className="flex flex-col items-center justify-center bg-[#DDDDDD] gap-[8px] rounded-[20px] md:pl-[32px] pl-[10px] md:pr-[32px] pr-[10px] md:pt-[20px] pt-[10px] md:pb-[20px] pb-[10px]">
+                        <div className="flex w-[100%] flex-row items-center bg-white rounded-[8px] gap-[8px] h-[32px] pl-[16px]">
+                            <p className="md:text-base text-xs">Certificate ID: <span className="font-bold">{props.details.cert_id}</span></p>
+                            <img className="cursor-pointer" 
+                                onClick={() => {{navigator.clipboard.writeText(props.details.cert_id), props.showToast('Certificate ID copied to clipboard!')}}} 
+                                src={"/icons/copy-icon.svg"}/>
                         </div>
-                        <img src={"/images/certificate-placeholder.svg"}/>
+                        {(props.image == 'data:,') || (props.image == '') ? "Loading...": <img className="w-[600px]" src={props.image}/>}
                     </div>
-                    <p className="text-center text-[16px] font-[400px] italic">
-                    This certificate verifies that Amarina Baskoro successfully completed Product Management Guest Class as a Speaker.
+                    <p className="text-center md:text-[16px] text-xs font-[400px] italic leading-6">
+                        This certificate verifies that<span className="font-bold"> {props.details.name} </span> 
+                        successfully completed<span className="font-bold"> {props.details.eventName} </span> 
+                        as a<span className="font-bold"> {props.details.asWhat} </span>.
                     </p>
                 </div>
 
-                <div className="flex lg:flex-col flex-row lg:w-[300px] w-[1000px] pb-[40px] gap-[20px] justify-center">
+                <div className="flex lg:flex-col md:flex-row flex-col lg:w-[300px] md:w-[1000px] w-[250px] pb-[40px] md:gap-[20px] gap-[8px] justify-center">
                     <div className="flex flex-col gap-[4px]">
-                        <p className="text-[24px] font-bold">
+                        <p className="md:text-[24px] text-base font-bold">
                             Detail:
                         </p>
 
-                        <div>
+                        <div className="flex md:text-[16px] text-xs flex-col gap-[4px] md:leading-6 leading-4">
+                            <div>
+                                <p>
+                                    Recipent:
+                                </p>
+                                <p className="font-bold">
+                                    {props.details.name}
+                                </p>
+                            </div>
 
-                            <p className="text-[16px]">
-                                Recipent:
-                            </p>
-                            <p className="text-[16px] font-bold">
-                                Amarina Baskoro
-                            </p>
+                            <div>
+                                <p>
+                                    Issued by RISTEK for Event:
+                                </p>
+                                <p className="font-bold">
+                                    {props.details.eventName}
+                                </p>
+                            </div>
 
-                            <p className="text-[16px]">
-                                Issued by RISTEK for Event:
-                            </p>
-                            <p className="text-[16px] font-bold">
-                                Product Management Guest Class
-                            </p>
+                            <div>
+                                <p>
+                                    As:                    
+                                </p>
+                                <p className="font-bold">
+                                    {props.details.asWhat}                  
+                                </p>
+                            </div>
 
-                            <p className="text-[16px]">
-                                As:                    
-                            </p>
-                            <p className="text-[16px] font-bold">
-                                Speaker                    
-                            </p>
                         </div>
                     </div>
 
-                    <div>
-                        <p>
-                            Issued on: 23/07/2023
+                    <div className="flex flex-col gap-[18px]">
+                        <p className="underline">
+                            Issued on: {props.details.issuedDate}                  
                         </p>
 
-                        <div className="flex flex-col gap-[10px] text-center">
+                        <div className="flex flex-col gap-[10px] items-center md:text-base text-[14px] text-center">
                             <p className="text-[18px] font-bold">
                                 Download Certificate
                             </p>
                             <div className="flex flex-row gap-[10px]">
-                                <button className="bg-[#C9CEFC] rounded-[8px] h-[48px] w-[145px]">as PDF</button>
-                                <button className="bg-[#C9CEFC] rounded-[8px] h-[48px] w-[145px]">as PNG</button>
+
+                                <a href={props.pdf} download="Certificate.pdf">
+                                    <button className="bg-[#C9CEFC] rounded-[8px] md:h-[48px] h-[28px] md:w-[145px] w-[86.5px] text-[#45349F]">as PDF</button>
+                                </a>
+
+                                <a href={props.image} download="Certificate.png">
+                                    <button className="bg-[#C9CEFC] rounded-[8px] md:h-[48px] h-[28px] md:w-[145px] w-[86.5px] text-[#45349F]">as PNG</button>
+                                </a>
+
                             </div>
-                            <button className="bg-[#C9CEFC] rounded-[8px] h-[48px] w-[100%]">Copy Image</button>
+                            <button 
+                                onClick={() => {{copyImageToClipboard(props.image), props.showToast('Image copied to clipboard!')}}} 
+                                className="bg-[#C9CEFC] rounded-[8px] md:h-[48px] h-[32px] md:w-[100%] w-[183px] text-[#45349F]">Copy Image
+                            </button>
                         </div>
                     </div>
 

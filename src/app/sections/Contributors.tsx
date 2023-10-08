@@ -52,7 +52,7 @@ export default function Contributors() {
         <div className="relative bg-[#F1F5F9] flex items-center">
 
             <div className="absolute flex flex-col justify-between w-[100%] h-[100%]">
-                <div className="flex flex-row justify-between w-[100%] justify-center items-center pt-[40px]">
+                <div className="flex flex-row justify-between w-[100%] justify-center items-center">
                     <img src={"/assets/decor-s-1.svg"} className="left-0 max-w-[15%]"></img>
                     <p className="text-[color:var(--primary-colors-purple-heart,#5038BC)] sm:text-7xl text-2xl text-center font-bold">
                         People Behind the App
