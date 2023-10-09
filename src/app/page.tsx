@@ -20,7 +20,7 @@ interface Details {
 }
 
 export default function Home() {
-    const endpoint = "http://103.161.185.26:8000"
+    const endpoint = "https://ristek-verify.cloud"
 
     const [modal, showModal] = useState(false);
 
