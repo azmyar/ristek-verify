@@ -25,7 +25,7 @@ export default function Home() {
   const [image, setImage] = useState<string>("");
   const [pdf, setPdf] = useState<string>("");
 
-  const showToast = (message: string) =>
+  const showToast = (message: string) => {
     toast.info(message, {
       icon: false,
       position: "bottom-center",
@@ -37,8 +37,9 @@ export default function Home() {
       progress: undefined,
       theme: "light",
     });
+  };
 
-  const verifyError = () =>
+  const verifyError = () => {
     toast.error("Certificate with the given ID was not found!", {
       position: "bottom-center",
       autoClose: 5000,
@@ -48,6 +49,7 @@ export default function Home() {
       draggable: true,
       theme: "colored",
     });
+  };
 
   const fetchCertificate = async (inp: string) => {
     showToast("Verifying...");
