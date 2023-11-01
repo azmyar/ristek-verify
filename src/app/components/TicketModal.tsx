@@ -3,12 +3,12 @@ import React from "react";
 
 interface Props {
   showToast: (message: string) => void;
-  details: TicketDetails;
+  details: TicketDetails | null;
 }
 
 const TicketModal = ({ showToast, details }: Props) => {
   const copyId = () => {
-    navigator.clipboard.writeText(details.id),
+    navigator.clipboard.writeText(details!.id),
       showToast("Ticket ID copied to clipboard!");
   };
 
@@ -33,7 +33,7 @@ const TicketModal = ({ showToast, details }: Props) => {
               <div className="flex flex-col gap-1">
                 <p className="text-lg text-[#E1E5FE]">Recipient</p>
                 <p className="font-extrabold text-white text-4xl">
-                  {details.recipient}
+                  {details!.recipient}
                 </p>
               </div>
 
@@ -41,7 +41,7 @@ const TicketModal = ({ showToast, details }: Props) => {
                 <div className="flex flex-col gap-1">
                   <p className="text-lg text-[#E1E5FE]">Issued Date</p>
                   <p className="font-extrabold text-white text-4xl">
-                    {details.issuedDate}
+                    {details!.issuedDate}
                   </p>
                 </div>
 
@@ -52,7 +52,7 @@ const TicketModal = ({ showToast, details }: Props) => {
                 <div className="flex flex-col gap-1">
                   <p className="text-lg text-[#E1E5FE]">Expired Date</p>
                   <p className="font-extrabold text-white text-4xl">
-                    {details.expiredDate}
+                    {details!.expiredDate}
                   </p>
                 </div>
               </div>
@@ -60,7 +60,7 @@ const TicketModal = ({ showToast, details }: Props) => {
               <div className="flex flex-col gap-1">
                 <p className="text-lg text-[#E1E5FE]">Event's Name</p>
                 <p className="font-extrabold text-white text-4xl">
-                  {details.eventName}
+                  {details!.eventName}
                 </p>
               </div>
             </div>
@@ -75,7 +75,7 @@ const TicketModal = ({ showToast, details }: Props) => {
               <div className="flex flex-col">
                 <p className="text-lg text-[#45349F]">UUID:</p>
                 <p className="font-extrabold text-[#241D49] text-4xl">
-                  {details.id}
+                  {details!.id}
                 </p>
               </div>
 
