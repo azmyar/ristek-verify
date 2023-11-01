@@ -2,8 +2,8 @@ import { CertDetails, TicketDetails } from "@/type";
 import { copyImageToClipboard } from "copy-image-clipboard";
 
 interface Props {
-  modal: Function;
-  showToast: Function;
+  modal: () => void;
+  showToast: (message: string) => void;
   details: CertDetails | null;
   image: string;
   pdf: string;
