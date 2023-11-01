@@ -11,6 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 import { CertDetails, TicketDetails } from "@/type";
 import CertModal from "./components/CertModal";
+import TicketModal from "./components/TicketModal";
 
 export default function Home() {
   const endpoint = "https://ristek-verify.cloud";
@@ -106,7 +107,10 @@ export default function Home() {
               pdf={pdf}
             />
           ) : (
-            <p className="fixed top-0 left-0">ticket modal</p>
+            <TicketModal
+              showToast={showToast}
+              details={ticketDetails}
+            />
           )}
         </div>
       )}

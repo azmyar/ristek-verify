@@ -17,7 +17,10 @@ export default function CertModal({
   pdf,
 }: Props): JSX.Element {
   return (
-    <div className="fade fixed lg:h-fit h-[85%] flex flex-col items-center sm:gap-[20px] gap-[10px] p-[20px] lg:w-[1000px] md:w-[700px] w-[337px] rounded-[20px] bg-white">
+    <div
+      id="cert-modal"
+      className="fade fixed lg:h-fit h-[85%] flex flex-col items-center sm:gap-[20px] gap-[10px] p-[20px] lg:w-[1000px] md:w-[700px] w-[337px] rounded-[20px] bg-white"
+    >
       <div className="flex flex-row w-full justify-between items-center">
         <img
           src={"/icons/cross_box.svg"}
